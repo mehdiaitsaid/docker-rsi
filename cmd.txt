@@ -1,0 +1,49 @@
+# docker run hello-world
+# docker run -it ubuntu bash
+# docker images
+##########################################################
+#                  Static project
+##########################################################
+# mkdir static
+# cd static
+# nano index.html [put the content of index.html file]
+# nano Dockerfile [put the content of static-Dockerfile .txt file]
+# docker build -t nginx-static-site .
+# docker run -d --name ng-static-site-container -p 8000:80 nginx-static-site
+##########################################################
+#                  Laravel project
+##########################################################
+# mkdir laravel 
+# cd laravel
+# git clone https://github.com/laravel/laravel.git laravel-app
+# cd laravel-app
+# docker run --rm -v $(pwd):/app composer install
+# sudo chown -R $USER:$USER ~/laravel-app
+# nano docker-compose.yml [put the content of docker-compose.yml]
+# nano Dockerfile [put the content of laravel-Dockerfile.txt]
+# mkdir php
+# nano php/local.ini [put the content of local.ini]
+# mkdir -p nginx/conf.d
+# nano nginx/conf.d/app.conf [put the content of app.conf]
+# mkdir mysql
+# nano mysql/my.cnf [put the content of my.cnf]
+# cp .env.example .env
+# docker-compose up -d
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# wsl --list --verbose
+# wsl --set-version <your proc> 2
+# docker stop $(docker ps -aq) [stope all containers ]
+# docker run -it  -d "nginx-static:latest"
+# docker exec -i -t 397979f49608 bash
