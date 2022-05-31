@@ -1,62 +1,47 @@
-version: '3'
+version: '3.8'
 services:
+    
+    # Application
+    app:
+        build:
+            context: .
+            dockerfile: app.dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - "database"
+    # Web Server
+    web:
+        build:
+            context: .
+            dockerfile: web.dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - "app"
+        ports:
+            - 80:80
+    # Database
+    database:
+        image: mysql:8.0
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        ports:
+            - 33061:3306
+    # Database management
+    pma:
+        image: phpmyadmin:5.1
+        depends_on:
+            - database
+        ports:
+            - 8888:80
 
-  #Laravel App
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: hakase-labs/laravel
-    container_name: app
-    restart: unless-stopped
-    tty: true
-    environment:
-      SERVICE_NAME: app
-      SERVICE_TAGS: dev
-    working_dir: /var/www/html
-    volumes:
-      - ./:/var/www/html
-    networks:
-      - mynet
-
-  #Nginx Service
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./:/var/www/html
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-    networks:
-      - mynet
-
-  #MySQL Service
-  db:
-    image: mysql:5.7
-    container_name: db
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: laraveldb
-      MYSQL_USER: laraveluser
-      MYSQL_PASSWORD: laravel_db_password
-      MYSQL_ROOT_PASSWORD: mysql_root_password
-    volumes:
-      - mysqldata:/var/lib/mysql/
-    networks:
-      - mynet
-
-#Docker Networks
-networks:
-  mynet:
-    driver: bridge
-#Volumes
 volumes:
-  mysqldata:
-    driver: local
+    dbdata:

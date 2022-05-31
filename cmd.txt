@@ -31,6 +31,29 @@
 # docker-compose up -d
 # 
 # 
+
+
+##########################################################
+#                  Laravel project
+##########################################################
+
+
+# curl -L https://github.com/laravel/laravel/archive/v8.5.21.tar.gz | tar xz
+# mv laravel-8.5.21 laravel
+# chown -R $USER:$USER laravel
+# cd laravel
+# docker run --rm -v “$(pwd)”:/app composer install
+# nano docker-compose.yaml [put the content of docker-compose.yml]
+# nano .env [put the content of .env]
+# nano app.dockerfile [put the content of app.dockerfile]
+# nano web.dockerfile [put the content of web.dockerfile]
+# nano vhost.conf [put the content of vhost.conf]
+# docker-compose up 
+# 
+# 
+# 
+# 
+# 
 # 
 # 
 # 
