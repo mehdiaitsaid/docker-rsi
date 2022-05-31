@@ -40,6 +40,33 @@
 # 
 # 
 # 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
 # wsl --list --verbose
 # wsl --set-version <your proc> 2
 # docker stop $(docker ps -aq) [stope all containers ]
