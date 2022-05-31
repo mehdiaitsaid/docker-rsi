@@ -13,31 +13,6 @@
 ##########################################################
 #                  Laravel project
 ##########################################################
-# mkdir laravel 
-# cd laravel
-# git clone https://github.com/laravel/laravel.git laravel-app
-# cd laravel-app
-# docker run --rm -v $(pwd):/app composer install
-# sudo chown -R $USER:$USER ~/laravel-app
-# nano docker-compose.yml [put the content of docker-compose.yml]
-# nano Dockerfile [put the content of laravel-Dockerfile.txt]
-# mkdir php
-# nano php/local.ini [put the content of local.ini]
-# mkdir -p nginx/conf.d
-# nano nginx/conf.d/app.conf [put the content of app.conf]
-# mkdir mysql
-# nano mysql/my.cnf [put the content of my.cnf]
-# cp .env.example .env
-# docker-compose up -d
-# 
-# 
-
-
-##########################################################
-#                  Laravel project
-##########################################################
-
-
 # curl -L https://github.com/laravel/laravel/archive/v8.5.21.tar.gz | tar xz
 # mv laravel-8.5.21 laravel
 # chown -R $USER:$USER laravel
@@ -49,8 +24,8 @@
 # nano web.dockerfile [put the content of web.dockerfile]
 # nano vhost.conf [put the content of vhost.conf]
 # docker-compose up 
-# 
-# 
+# docker-compose exec app php artisan key:generate
+# docker-compose exec app php artisan optimize
 # 
 # 
 # 
